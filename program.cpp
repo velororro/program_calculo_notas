@@ -1,11 +1,13 @@
 #include <iostream>
 #include <locale.h>
+#include <vector>
 
 using namespace std;
 
 void program();
 void titulo(string titulo);
 void menu_inicio();
+void nuevo_menu(string titulo, vector<string> opciones);
 
 int main(int args, char* argv[])
 {
@@ -28,7 +30,8 @@ void program(){
     titulo("INICIO");
     int opcion = 0;
     while (opcion != 3){
-        menu_inicio();
+        //menu_inicio();
+        nuevo_menu("AÑADIR UN CURSO", {"Añadir un curso", "Añadir un informe"});
         cin >> opcion;
         switch (opcion){
             case 1:
@@ -58,6 +61,16 @@ void menu_inicio(){
     cout << "1. Añadir un curso" << endl;
     cout << "2. Ver datos" << endl;
     cout << "3. Salir" << endl;
+    cout << "-------------------------------" << endl;
+    cout << "Ingrese una opcion: ";
+}
+
+void nuevo_menu(string nomb, vector<string> opciones){
+    titulo(nomb);
+    cout << "-------------------------------" << endl;
+    for (int i = 0; i < opciones.size(); i++){
+        cout << i + 1 << ". " << opciones[i] << endl;
+    }
     cout << "-------------------------------" << endl;
     cout << "Ingrese una opcion: ";
 }
