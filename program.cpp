@@ -12,11 +12,13 @@ void nuevo_menu(string titulo, vector<string> opciones);
 int main(int args, char* argv[])
 {
     if (args > 1) {
-        std::string argument = argv[1];
+        string argument = argv[1];
         if (argument == "--version") {
-            std::cout << "MiPrograma v1.0" << std::endl;
+            system("cls");
+            cout << "Calculo Mis Notas v1.0" << endl;
+            cout << "By Ale\t\t2023" << endl;
         } else {
-            std::cout << "Tal vez quisiste decir \"--version\"" << std::endl;
+            cout << "Tal vez quisiste decir \"--version\"" << endl;
         }
     } else {
         program();
