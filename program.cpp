@@ -29,29 +29,9 @@ void program(){
     titulo("CALCULO MIS NOTAS");
     titulo("INICIO");
     int opcion = 0;
-    while (opcion != 3){
-        //menu_inicio();
-        nuevo_menu("AÑADIR UN CURSO", {"Añadir un curso", "Añadir un informe"});
-        cin >> opcion;
-        switch (opcion){
-            case 1:
-                titulo("AÑADIR UN CURSO");
-                break;
-            case 2:
-                titulo("VER DATOS");
-                break;
-            case 3:
-                titulo("SALIR");
-                break;
-            default:
-                system("cls");
-                cout << "Opcion no valida" << endl;
-                break;
-        }
-    }   
 }
 
-void titulo(string titulo){
+void new_titulo(string titulo){
     system("cls");
     cout << titulo << endl;
     cout << "-------------------------------" << endl;
@@ -65,12 +45,14 @@ void menu_inicio(){
     cout << "Ingrese una opcion: ";
 }
 
-void nuevo_menu(string nomb, vector<string> opciones){
+void nuevo_menu(char *nomb, char *opciones[], int num_opciones){
     titulo(nomb);
-    cout << "-------------------------------" << endl;
-    for (int i = 0; i < opciones.size(); i++){
-        cout << i + 1 << ". " << opciones[i] << endl;
-    }
-    cout << "-------------------------------" << endl;
-    cout << "Ingrese una opcion: ";
+    bool salir = false;
+    do {
+        system("cls");
+        cout << nomb << endl;
+        for(int i = 0; i < num_opciones; i++){
+            cout << i + 1 << ". " << opciones[i] << endl;
+        }
+    } while (!salir);
 }
