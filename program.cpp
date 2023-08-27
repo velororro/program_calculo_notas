@@ -5,9 +5,9 @@
 using namespace std;
 
 void program();
-void titulo(string titulo);
+void new_titulo(string titulo);
 void menu_inicio();
-void nuevo_menu(string titulo, vector<string> opciones);
+int nuevo_menu(char *nomb, char *opciones[], int num_opciones);
 
 int main(int args, char* argv[])
 {
@@ -28,9 +28,14 @@ int main(int args, char* argv[])
 
 void program(){
     setlocale(LC_ALL, "Spanish");
-    titulo("CALCULO MIS NOTAS");
-    titulo("INICIO");
+    new_titulo("CALCULO MIS NOTAS");
+    char *titulo = "INICIO";
+    char *opciones[] = {"Añadir un curso", "Ver datos", "Salir"};
+    int num_opciones = 3;
     int opcion = 0;
+    do {
+        opcion = nuevo_menu(titulo, opciones, num_opciones);
+    } while (opcion < 1 || opcion > num_opciones);
 }
 
 void new_titulo(string titulo){
@@ -47,14 +52,48 @@ void menu_inicio(){
     cout << "Ingrese una opcion: ";
 }
 
-void nuevo_menu(char *nomb, char *opciones[], int num_opciones){
-    titulo(nomb);
-    bool salir = false;
-    do {
-        system("cls");
-        cout << nomb << endl;
-        for(int i = 0; i < num_opciones; i++){
-            cout << i + 1 << ". " << opciones[i] << endl;
+int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
+    int opcion = 0;
+
+    system("cls");
+    //
+    new_titulo(nomb);
+    //
+    for(int i = 0; i < num_opciones; i++){
+        cout << i + 1 << ". " << opciones[i] << endl;
+    }
+    //
+    cout << "-------------------------------" << endl;
+    cout << "Ingrese una opcion: ";
+
+    while (true)
+    {
+        string input;
+        getline(cin, input);
+
+        if (input.empty()) {
+            cout << "Entrada vacia. Introduzca una opción válida" << endl;
+            continue;
         }
-    } while (!salir);
+        bool valid = true;
+        for (char c : input) {
+            if (!isdigit(c)) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (!valid) {
+            cout << "Entrada inválida. Introduzca un número de opción válido" << endl;
+            continue;
+        }
+
+        opcion = stoi(input);
+        if (opcion < 1 || opcion > num_opciones) {
+            cout << "Entrada inválida. Introduzca una opción válida" << endl;
+            continue;
+        }
+        break;
+    }
+    return opcion;
 }
