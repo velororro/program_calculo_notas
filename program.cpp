@@ -33,9 +33,21 @@ void program(){
     char *opciones[] = {"Añadir un curso", "Ver datos", "Salir"};
     int num_opciones = 3;
     int opcion = 0;
-    do {
-        opcion = nuevo_menu(titulo, opciones, num_opciones);
-    } while (opcion < 1 || opcion > num_opciones);
+    opcion = nuevo_menu(titulo, opciones, num_opciones);
+    switch (opcion)
+    {
+        case 1:
+            new_titulo("AÑADIR UN CURSO");
+            break;
+        case 2:
+            new_titulo("VER DATOS");
+            break;
+        case 3:
+            new_titulo("SALIR");
+            break;
+        default:
+            break;
+    }
 }
 
 void new_titulo(string titulo){
