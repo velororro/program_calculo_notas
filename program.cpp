@@ -84,7 +84,8 @@ int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
         getline(cin, input);
 
         if (input.empty()) {
-            cout << "Entrada vacia. Introduzca una opción válida" << endl;
+            cout << "-------------------------------" << endl;
+            cout << "Entrada vacia. Ingrese una opcion: ";
             continue;
         }
         bool valid = true;
@@ -96,13 +97,15 @@ int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
         }
 
         if (!valid) {
-            cout << "Entrada inválida. Introduzca un número de opción válido" << endl;
+            cout << "-------------------------------" << endl;
+            cout << "Entrada inválida. Ingrese una opcion: ";
             continue;
         }
 
         opcion = stoi(input);
         if (opcion < 1 || opcion > num_opciones) {
-            cout << "Entrada inválida. Introduzca una opción válida" << endl;
+            cout << "-------------------------------" << endl;
+            cout << "Entrada inválida. Ingrese una opcion: ";
             continue;
         }
         break;
