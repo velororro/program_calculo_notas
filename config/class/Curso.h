@@ -52,4 +52,27 @@ class Curso
         void setNotas(vector<vector<float>> notas){
             this->notas = notas;
         }
+
+        void showCurso(){
+            cout << "Codigo: " << codigo << endl;
+            cout << "Nombre: " << nombre << endl;
+            cout << "Pesos: " << endl;
+            for (int i = 0; i < pesos.size(); i++)
+            {
+                for (int j = 0; j < pesos[i].size(); j++)
+                {
+                    cout << pesos[i][j] << " ";
+                }
+                cout << endl;
+            }
+            cout << "Notas: " << endl;
+            for (int i = 0; i < notas.size(); i++)
+            {
+                for (int j = 0; j < notas[i].size(); j++)
+                {
+                    cout << notas[i][j] << " ";
+                }
+                cout << endl;
+            }
+        }
 };
