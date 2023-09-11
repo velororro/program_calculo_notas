@@ -6,9 +6,10 @@ using namespace std;
 
 void program();
 void nuevo_titulo(string titulo);
-void menu_inicio();
 int nuevo_menu(char *nomb, char *opciones[], int num_opciones);
 void nuevo_curso();
+// validaciones
+int opcion_menu_validar(int opcion, int num_opciones);
 
 int main(int args, char* argv[])
 {
@@ -58,14 +59,6 @@ void nuevo_titulo(string titulo){
     cout << "-------------------------------" << endl;
 }
 
-void menu_inicio(){
-    cout << "1. Añadir un curso" << endl;
-    cout << "2. Ver datos" << endl;
-    cout << "3. Salir" << endl;
-    cout << "-------------------------------" << endl;
-    cout << "Ingrese una opcion: ";
-}
-
 int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
     int opcion = 0;
 
@@ -80,8 +73,14 @@ int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
     cout << "-------------------------------" << endl;
     cout << "Ingrese una opcion: ";
 
-    while (true)
-    {
+    // validar
+    opcion = opcion_menu_validar(opcion, num_opciones);
+
+    return opcion;
+}
+
+int opcion_menu_validar(int opcion, int num_opciones) {
+    while (true) {
         string input;
         getline(cin, input);
 
@@ -115,8 +114,39 @@ int nuevo_menu(char *nomb, char *opciones[], int num_opciones){
     return opcion;
 }
 
+int nota_peso_validar(int opcion) {
+    while (true) {
+        string input;
+        getline(cin, input);
+
+        if (input.empty()) {
+            cout << "-------------------------------" << endl;
+            cout << "Entrada vacia. Ingrese una opcion: ";
+            continue;
+        }
+        bool valid = true;
+        for (char c : input) {
+            if (!isdigit(c)) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (!valid) {
+            cout << "-------------------------------" << endl;
+            cout << "Entrada inválida. Ingrese una opcion: ";
+            continue;
+        }
+
+        opcion = stoi(input);
+        break;
+    }
+    return opcion;
+}
+
 void nuevo_curso(){
-    cout << "Ingrese el nombre del curso:";
+    cout << "Ingrese el nombre del curso: ";
+    // validar input
     while (true)
     {
         string input;
@@ -124,11 +154,33 @@ void nuevo_curso(){
 
         if(input.empty()){
             cout << "-------------------------------" << endl;
-            cout << "Entreada vacia. Ingrese nombre de curso: ";
+            cout << "Entrada vacia. Ingrese nombre de curso: ";
             continue;
         } else {
             break;
         }
     }
+    // pedir más datos de curso
+    string pesos = "";
+    pesos += "-------------------------------\n";
+    pesos += "Etapa\tContinua  Examen\n";
+    pesos += "-------------------------------\n";
+    pesos += "1\n2\n3";
+    int pesos_etapas[3][2];
+
+    // validar input
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "\nEtapa " << i + 1 << endl;
+        for (int j = 0; j < 2; i++)
+        {         
+            // validar
+            pesos_etapas[i][j] = nota_peso_validar(pesos_etapas[i][j]);
+        }
+        
+    }
+    
+    cout << "Ingrese pesos de notas: ";
+
     
 }
